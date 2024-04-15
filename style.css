@@ -1,0 +1,197 @@
+*,
+*::before,
+*::after {
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto,
+    Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+  display: grid;
+  place-content: center;
+  min-height: 100vh;
+  background-color: #c7c7c7;
+}
+
+main {
+  background: no-repeat url(img/iphone.webp);
+  background-size: contain;
+  width: 320px;
+  height: 640px;
+  display: flex;
+  filter: drop-shadow(0 0 10px rgba(0, 0, 0, 0.3));
+}
+
+section {
+  background-color: #f6f6f6;
+  width: 100%;
+  border-radius: 32px;
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+  overflow: hidden;
+  position: relative;
+  padding: 16px 6px;
+  margin: 24px;
+}
+
+header {
+  display: flex;
+  justify-content: center;
+
+  & img {
+    width: 24px;
+    height: 24px;
+  }
+}
+
+footer {
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  gap: 12px;
+  padding: 0 24px;
+  justify-content: center;
+  align-items: center;
+
+  & button {
+    background: no-repeat url(img/tinder-icons.webp);
+    background-position: 0px 0px;
+    background-size: 175px;
+    height: 32px;
+    width: 32px;
+    border-radius: 50%;
+    border: 1px solid #ccc;
+    cursor: pointer;
+    border: 0;
+    transition: scale .3 ease;
+
+    &:hover {
+      scale: 1.4;
+    }
+
+    &.is-big {
+      background-size: 250px;
+      width: 48px;
+      height: 48px;
+    }
+
+    &.is-undo {
+      background-position: -140px 0;
+    }
+
+    &.is-remove {
+      background-position: -148px 0;
+    }
+
+    &.is-fav {
+      background-position: -50px 0;
+    }
+
+    &.is-star {
+      background-position: -75px 0;
+    }
+  }
+}
+
+.cards {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  margin: 0 auto;
+
+  & > span {
+    display: grid;
+    place-content: center;
+    color: #777;
+    font-size: 14px;
+    text-align: center;
+    height: 100%;
+    z-index: -1;
+  }
+
+  & article {
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+    overflow: hidden;
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    cursor: grab;
+    z-index: 2;
+    
+    &.go-left {
+      transform: translateX(-150%) rotate(-30deg) !important;
+    }
+
+    &.go-right{
+      transform: translateX(150%) rotate(30deg) !important;
+    }
+
+    &.go-left,
+    &.go-right {
+      transition: transform .3s ease, rotate .3s ease;
+    }
+
+    &.reset {
+      transition: transform .3s ease;
+      transform: translateX(0) !important;
+    }
+  }
+
+  & .choise {
+    position: absolute;
+    color: #000;
+    border: 3px solid;
+    z-index: 4;
+    top: 32px;
+    right: 16px;
+    font-size: 24px;
+    font-weight: bold;
+    padding: 4px 8px;
+    width: fit-content;
+    opacity: 0;
+    
+    &.nope {
+      border-color: #ff6e63;
+      color: #ff6e63;
+      transform: rotate(30deg);
+    }
+    
+    &.like {
+      border-color: #63ff68;
+      color: #63ff68;
+      transform: rotate(-30deg);
+      left: 16px;
+    }
+  }
+
+  & img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+
+  & h2 {
+    color: #fff;
+    position: absolute;
+    inset: 0;
+    display: flex;
+    align-items: flex-end;
+    height: 100%;
+    width: 100%;
+    padding: 16px;
+    z-index: 3;
+    background: linear-gradient(to top, #00000088 20%, transparent 40%);
+  }
+  
+  & span {
+    margin-left: 6px;
+    font-size: 18px;
+    line-height: 1.4;
+    font-weight: 400;
+  }
+}
+
